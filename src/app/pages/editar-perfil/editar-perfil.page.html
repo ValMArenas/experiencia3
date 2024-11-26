@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/" text="" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content *ngIf="usuario">
+  <div class="foto-container">
+    <img [src]="usuario?.avatar" />
+  </div>
+
+  <ion-button expand="full" (click)="selectPhoto()">Cambiar Foto</ion-button>
+  <ion-button expand="full" color="primary" (click)="savePhoto()">Guardar Cambios</ion-button>
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Apellido Paterno</ion-label>
+    <ion-input [(ngModel)]="usuario.apellido_paterno"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Apellido Materno</ion-label>
+    <ion-input [(ngModel)]="usuario.apellido_materno"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="usuario.email"></ion-input>
+  </ion-item>
+  <div style="text-align: center;">
+    <ion-button (click)="guardarCambios()" fill="solid" shape="round" color="warning">
+      Guardar Cambios
+    </ion-button>
+  </div>
+</ion-content>

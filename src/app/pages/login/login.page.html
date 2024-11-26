@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="loginForm">
+    <ion-card>
+      <div style="text-align: center; padding-top: 30px;">
+        <img src="assets/asistentes.jpeg" style="height: 100px;">
+      </div>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">Inicio de sesión</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input label="Nombre de usuario: " type="text" labelPlacement="floating" 
+            formControlName="username" placeholder="Ingrese nombre de usuario"></ion-input>
+          </ion-item>
+          <div id="alerta" *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || 
+              loginForm.get('username')?.touched)">
+            <div id="alerta" *ngIf="loginForm.get('username')?.hasError('required')">
+              *Username es obligatorio
+            </div>
+            <div id="alerta" *ngIf="loginForm.get('username')?.hasError('minlength')">
+              *Username debe tener mínimo 6 caracteres
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-input label="Contraseña: " type="password" labelPlacement="floating" 
+            formControlName="password" placeholder="Ingrese su contraseña"></ion-input>
+          </ion-item>
+          
+          <div id="alerta" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || 
+              loginForm.get('password')?.touched)">
+            <div id="alerta" *ngIf="loginForm.get('password')?.hasError('required')">
+              *La contraseña es obligatoria
+            </div>
+            <div id="alerta" *ngIf="loginForm.get('password')?.hasError('minlength')">
+            *La contraseña debe tener mínimo 8 caracteres
+            </div>
+          </div>
+          <ion-button (click)="recuperarPassword()" fill="clear" style="font-size:x-small">
+            Recuperar contraseña
+          </ion-button>
+          <ion-button (click)="registrarse()" fill="clear" style="font-size:x-small">
+            Registrarse
+          </ion-button>
+        </ion-list>
+      </ion-card-content>
+      <div style="text-align: center; padding-bottom: 30px;">
+        <ion-button (click)="login()" [disabled]="!loginForm.valid" fill="solid" shape="round" color="primary">
+          Iniciar sesión
+        </ion-button>
+      </div>
+    </ion-card>
+  </form>
+</ion-content>
